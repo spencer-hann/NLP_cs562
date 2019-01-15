@@ -31,8 +31,6 @@ if __name__ == "__main__":
 
     print("creating n-grams", file=sys.stderr)
     unigrams, bigrams = get_ngrams(tokens)
-    print(type(unigrams))
-    print(type(bigrams))
 
     print("pickling...", file=sys.stderr)
     with open("p3_unigrams_output.txt", "wb") as f:
