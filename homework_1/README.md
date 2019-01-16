@@ -150,7 +150,8 @@ Top 20 words:
 Number of types:   144198
 Number of tokens:  10092980
 
-6. `
+6. 
+```
 Top 20 words:
 	excl. stopwords
 1	taiwan
@@ -173,7 +174,7 @@ Top 20 words:
 18	according
 19	party
 20	economic
-`
+```
 
 
 
