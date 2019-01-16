@@ -5,7 +5,7 @@
 ## Part 1: Reading some data
 
 1. My program for Part 1 is saved as `homework1/p1read_data.py` in this repo.
-2. ```
+2. `
 Mainland Chinese Foreign Minister Qian Qichen
 was highly skeptical of Tokyo's explanations of the content of the
 newly published US-Japan guidelines for defense cooperation when he
@@ -106,7 +106,7 @@ meters wide and the nearby hinterland remaining undeveloped and
 blanketed by weeds.
 Taipei's representative office in Rome, which has generally been
 reluctant to beckon Taiwan investors to Italy for fear that the
-```
+`
 3. Fortunately, I did not encounter any serious bugs in this program.
 I made sure to read the `lxml.etree` documentation before getting started.
 The documentation had everything I needed so it ended up being pretty easy to use.
@@ -122,7 +122,7 @@ The only small problem I had was not checking for `None`, which caused the progr
 1. Number of types:   144336
 2. Number of tokens:  16474259
 3. ![](rf_plot_full.png) ![](rf_plot_rf_plot_top20.png) ![](rf_plot_full_excl_stopwords.png) ![](rf_plot_top20_excl_stopwords.png)
-4. ```
+4. `
 Top 20 words:
 	incl. stopwords
 1	the
@@ -145,12 +145,12 @@ Top 20 words:
 18	he
 19	be
 20	from
-```
+`
 5. The number of types decreases slightly (by the number of stopwords), but the numer of tokens decreases durastically.
 Number of types:   144198
 Number of tokens:  10092980
 
-6. ```
+6. `
 Top 20 words:
 	excl. stopwords
 1	taiwan
@@ -173,7 +173,7 @@ Top 20 words:
 18	according
 19	party
 20	economic
-```
+`
 
 
 
