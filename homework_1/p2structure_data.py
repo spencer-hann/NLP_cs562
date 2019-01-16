@@ -28,9 +28,7 @@ if __name__ == "__main__":
     print("number of sentences:", len(tokens), file=sys.stderr)
 
     print("removing punctuation and tokenizing words", file=sys.stderr)
-    #table = str.maketrans(dict.fromkeys(punctuation))
     for i, t in enumerate(tokens):
-        #tokens[i] = t.translate(table) # remove punctuation
         tokens[i] = word_tokenize(tokens[i])
         tokens[i] = [t for t in tokens[i] if t not in punctuation] # remove empties
 

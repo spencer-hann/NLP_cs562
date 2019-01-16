@@ -11,7 +11,7 @@ def load_ngrams():
         bigrams = pload(f)
     return unigrams, bigrams
 
-def calc_PMI(unigrams, bigrams, threshold=100):
+def calc_PMI(unigrams, bigrams, threshold=0):
     pmi = defaultdict(lambda:None)
 
     # convert unigrams to probabilities, not counts
@@ -29,21 +29,42 @@ def calc_PMI(unigrams, bigrams, threshold=100):
             total += count
         for w2, count in inner_dict.items():
             if count < threshold: continue
-            #pmi[w1,w2] = log(count / total)
-            #pmi[w1,w2] -= log(unigrams[w2])
-            pmi[w1,w2] = count / total
-            pmi[w1,w2] /= unigrams[w2]
+            pmi[w1,w2] = log(count / total)
+            pmi[w1,w2] -= log(unigrams[w2])
+            #pmi[w1,w2] = count / total
+            #pmi[w1,w2] /= unigrams[w2]
     return pmi
 
-def top_n_pmi(pmi, n=10):
-    pmi = [(count,bigram) for bigram,count in pmi.items()]
-    pmi = sorted(pmi, reverse=True)
-    return pmi[:n]
+def top_n_pmi(pmi, n):
+    topn = [(count,bigram) for bigram,count in pmi.items()]
+    topn = sorted(topn, reverse=True)
+    return topn[:n]
 
 if __name__ == "__main__":
     unigrams, bigrams = load_ngrams()
 
     pmi = calc_PMI(unigrams, bigrams)
     top_pmis = top_n_pmi(pmi,30)
-    for pmi in top_pmis:
-        print(pmi)
+    print("\nTop 30, threshold = 0")
+    for i,t in enumerate(top_pmis):
+        print(i,':',t)
+
+    print("\nPMI(new, york) =", pmi[("new","york")])
+
+    pmi = calc_PMI(unigrams, bigrams, 50)
+    top_pmis = top_n_pmi(pmi,10)
+    print("\nTop 10, threshold = 50")
+    for i,t in enumerate(top_pmis):
+        print(i,':',t)
+
+    pmi = calc_PMI(unigrams, bigrams, 100)
+    top_pmis = top_n_pmi(pmi,10)
+    print("\nTop 10, threshold = 100")
+    for i,t in enumerate(top_pmis):
+        print(i,':',t)
+
+    pmi = calc_PMI(unigrams, bigrams, 200)
+    top_pmis = top_n_pmi(pmi,10)
+    print("\nTop 10, threshold = 200")
+    for i,t in enumerate(top_pmis):
+        print(i,':',t)
