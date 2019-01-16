@@ -180,7 +180,102 @@ Top 20 words:
 20	economic
 ```
 
-
-
-
 ### Word association metrics
+
+```
+Top 30, threshold = 0
+0 : (16.6173096601031, ('zwelakhe', 'sisulu'))
+1 : (16.6173096601031, ('zsofia', 'bodo'))
+2 : (16.6173096601031, ('zoran', 'krstevski'))
+3 : (16.6173096601031, ('zivadin', 'jovanovic'))
+4 : (16.6173096601031, ('zhuyin', 'fuhao'))
+5 : (16.6173096601031, ('zhow', 'chengjung'))
+6 : (16.6173096601031, ('zengcheng', 'handyware'))
+7 : (16.6173096601031, ('zccz', 'cep007'))
+8 : (16.6173096601031, ('zbignien', 'brzezinsky'))
+9 : (16.6173096601031, ('zaiman', 'nurmatias'))
+10 : (16.6173096601031, ('zahlavova', 'strycova'))
+11 : (16.6173096601031, ('zahi', 'hawass'))
+12 : (16.6173096601031, ('zaha', 'hadid'))
+13 : (16.6173096601031, ('z-line', 'switchback'))
+14 : (16.6173096601031, ('yuzin', 'chiautong'))
+15 : (16.6173096601031, ('yury', 'luzhkov'))
+16 : (16.6173096601031, ('yuliet', 'labrada'))
+17 : (16.6173096601031, ('yukihito', 'sentani'))
+18 : (16.6173096601031, ('yukang', 'chinghu'))
+19 : (16.6173096601031, ('yuchengco', 'dhanin'))
+20 : (16.6173096601031, ('yuchen', 'cdc.gov.tw'))
+21 : (16.6173096601031, ('yu-kuang', 'liao-liang'))
+22 : (16.6173096601031, ('ysaye', 'poeme'))
+23 : (16.6173096601031, ('youwei', '1858-1927'))
+24 : (16.6173096601031, ('yoshizumi', 'kosayo'))
+25 : (16.6173096601031, ('yoshiyuki', 'yokota'))
+26 : (16.6173096601031, ('yoshihiro', 'kawagami'))
+27 : (16.6173096601031, ('yonden', 'dargye'))
+28 : (16.6173096601031, ('yolande', 'thibeault'))
+29 : (16.6173096601031, ('yoko', 'shiba'))
+```
+These words all seem to be very rare words, many seem to be proper nouns.  
+
+
+```
+Top 10, threshold = 50
+0 : (12.70528665467242, ('mosel', 'vitelic'))
+1 : (12.685484027376241, ('ulan', 'bator'))
+2 : (12.368814418051208, ('vanessa', 'yea-ping'))
+3 : (12.273504238246883, ('merrill', 'lynch'))
+4 : (12.260600833410976, ('abu', 'dhabi'))
+5 : (12.197345186086293, ('las', 'vegas'))
+6 : (11.992775924759682, ('kofi', 'annan'))
+7 : (11.944391822033955, ('spongiform', 'encephalopathy'))
+8 : (11.932913426345495, ('modus', 'vivendi'))
+9 : (11.925788692626508, ('junichiro', 'koizumi'))
+
+Top 10, threshold = 100
+0 : (11.944391822033865, ('spongiform', 'encephalopathy'))
+1 : (11.717005894384066, ('ying-', 'jeou'))
+2 : (11.705797631631674, ('bovine', 'spongiform'))
+3 : (11.701770283050163, ('alma', 'mater'))
+4 : (11.611725268301136, ('sri', 'lanka'))
+5 : (11.284495209670311, ('kuala', 'lumpur'))
+6 : (11.218689760716369, ('sao', 'tome'))
+7 : (11.154524646754247, ('au', 'optronics'))
+8 : (11.130753029181523, ('eric', 'liluan'))
+9 : (11.103814813528952, ('qian', 'qichen'))
+
+Top 10, threshold = 200
+0 : (11.284495209670306, ('kuala', 'lumpur'))
+1 : (11.037061324192834, ('saudi', 'arabia'))
+2 : (10.656304320477197, ('ad', 'hoc'))
+3 : (10.643360540692594, ('burkina', 'faso'))
+4 : (10.553459854016115, ('mad', 'cow'))
+5 : (10.439684779891369, ('nautical', 'miles'))
+6 : (10.314544624324633, ('pound', 'sterling'))
+7 : (10.272500709150211, ('respiratory', 'syndrome'))
+8 : (10.259085659918076, ('r', 'd'))
+9 : (10.250343205939956, ('hon', 'hai'))
+```
+As the threshold increases, rarer words are bumped from the top of the list.
+
+```
+logPMI(new, york) = 6.25714988098
+```
+The PMI for "New York" would be higher if "new" was a rarer word. It is very unlikely that "york" would be seen with out being preceeded by "new". However, "new" is most likely used in many other contexts as well.
+Consider the output for the follow bit of code:
+```python
+    print(len(bigrams["new"]))
+    total = 0
+    for count in bigrams["new"].values():
+        total += count
+    print("count('new') =", total)
+    print("count('york' | 'new') =", bigrams["new"]["york"])
+    print("P('york' | 'new') =", bigrams["new"]["york"] / total)
+```
+Output:
+```
+3080
+count('new') = 31236
+count('york' | 'new') = 1928
+P('york' | 'new') = 0.06172365219618389
+```
+There are `3080` different words that follow "new" at least once.

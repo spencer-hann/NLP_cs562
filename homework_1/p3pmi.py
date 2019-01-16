@@ -49,8 +49,6 @@ if __name__ == "__main__":
     for i,t in enumerate(top_pmis):
         print(i,':',t)
 
-    print("\nPMI(new, york) =", pmi[("new","york")])
-
     pmi = calc_PMI(unigrams, bigrams, 50)
     top_pmis = top_n_pmi(pmi,10)
     print("\nTop 10, threshold = 50")
@@ -68,3 +66,14 @@ if __name__ == "__main__":
     print("\nTop 10, threshold = 200")
     for i,t in enumerate(top_pmis):
         print(i,':',t)
+
+    print("\nlogPMI(new, york) =", pmi[("new","york")])
+
+    print(len(bigrams["new"]))
+    total = 0
+    for count in bigrams["new"].values():
+        total += count
+    print("count('new') =", total)
+    print("count('york' | 'new') =", bigrams["new"]["york"])
+    print("P('york' | 'new') =", bigrams["new"]["york"] / total)
+
