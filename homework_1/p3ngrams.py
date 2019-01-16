@@ -22,9 +22,6 @@ def get_ngrams(tokens):
     return unigrams, bigrams
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("ERROR: pass in exactly one txt file to be parsed for token list.")
-
     with open("p2_output.txt", "rb") as f:
         print("loading pickle from: p2_output.txt", file=sys.stderr)
         tokens = pickle.load(f)

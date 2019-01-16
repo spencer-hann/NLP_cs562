@@ -27,4 +27,4 @@ if __name__ == "__main__":
                 if p.text:
                     print(p.text)
     else:
-        print("ERROR: must include list of .xml.gz files as arg")
+        sys.exit("ERROR: must include list of .xml.gz files as arg")

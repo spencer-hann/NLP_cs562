@@ -9,9 +9,9 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit("ERROR: pass in exactly one txt file to be tokenized.")
 
-    print("opening file: p1_output.txt", file=sys.stderr)
-    with open("p1_output.txt") as f:
-        print("reading file: p1_output.txt", file=sys.stderr)
+    print("opening file: " + sys.argv[1], file=sys.stderr)
+    with open(sys.argv[1]) as f:
+        print("reading file: " + sys.argv[1], file=sys.stderr)
         f = f.read()
 
     print("removing newlines", file=sys.stderr)
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     print("removing punctuation and tokenizing words", file=sys.stderr)
     for i, t in enumerate(tokens):
         tokens[i] = word_tokenize(tokens[i])
-        tokens[i] = [t for t in tokens[i] if t not in punctuation] # remove empties
+        tokens[i] = [t for t in tokens[i] if t[0] not in punctuation] # remove empties
 
 
     tokens = [t for t in tokens if t] # remove empties
