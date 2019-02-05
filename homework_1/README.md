@@ -278,4 +278,4 @@ count('new') = 31236
 count('york' | 'new') = 1928
 P('york' | 'new') = 0.06172365219618389
 ```
-There are `3080` different words that follow "new" at least once.
+There are `3080` different words that follow "new" at least once. We can see that `P('york' | 'new')` is actually relatively low, because "new" is so common a word.
